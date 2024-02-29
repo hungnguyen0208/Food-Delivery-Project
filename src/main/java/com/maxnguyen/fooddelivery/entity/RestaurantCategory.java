@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 
-@Entity(name = "RestaurantCategory")
+@Entity(name = "restaurant_category")
 public class RestaurantCategory {
     @EmbeddedId
     KeyRestaurantCategory keys;

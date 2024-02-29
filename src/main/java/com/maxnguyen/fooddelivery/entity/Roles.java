@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
-@Entity(name = "Roles")
+@Entity(name = "roles")
 public class Roles {
 
     @Id

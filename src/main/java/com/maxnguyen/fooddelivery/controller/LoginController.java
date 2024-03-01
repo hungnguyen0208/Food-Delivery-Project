@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin(origins = "http://localhost:3000/")
 public class LoginController {
     @Autowired
     LoginServiceImp loginServiceImp;
@@ -33,6 +32,14 @@ public class LoginController {
         ResponseData responseData = new ResponseData();
 
         responseData.setData(loginServiceImp.addUser(signUpRequest));
+
+        return new ResponseEntity<>(responseData, HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllUser")
+    public ResponseEntity<?> getAllUser(){
+        ResponseData responseData = new ResponseData();
+        responseData.setData(loginServiceImp.getAllUser());
 
         return new ResponseEntity<>(responseData, HttpStatus.OK);
     }

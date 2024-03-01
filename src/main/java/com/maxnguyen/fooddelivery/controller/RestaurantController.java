@@ -2,6 +2,7 @@ package com.maxnguyen.fooddelivery.controller;
 
 import com.maxnguyen.fooddelivery.payload.ResponseData;
 import com.maxnguyen.fooddelivery.service.imp.FileServiceImp;
+import com.maxnguyen.fooddelivery.service.imp.RestaurantServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -16,11 +17,21 @@ public class RestaurantController {
 
     @Autowired
     FileServiceImp fileServiceImp;
+    @Autowired
+    RestaurantServiceImp restaurantServiceImp;
 
     @PostMapping()
-    public ResponseEntity<?> createRestaurant(@RequestParam MultipartFile file){
+    public ResponseEntity<?> createRestaurant(
+            @RequestParam MultipartFile file,
+            @RequestParam String title,
+            @RequestParam String subtitle,
+            @RequestParam String description,
+            @RequestParam boolean isFreeShip,
+            @RequestParam String address,
+            @RequestParam String openDate
+    ){
         ResponseData responseData = new ResponseData();
-        boolean isSuccessful = fileServiceImp.saveFile(file);
+        boolean isSuccessful = restaurantServiceImp.createRestaurant(file, title, subtitle, description, isFreeShip, address, openDate);
         responseData.setData(isSuccessful);
         return new ResponseEntity<>(responseData, HttpStatus.OK);
     }

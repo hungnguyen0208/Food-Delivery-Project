@@ -4,25 +4,38 @@ import com.maxnguyen.fooddelivery.service.imp.LoginServiceImp;
 import com.maxnguyen.fooddelivery.payload.ResponseData;
 import com.maxnguyen.fooddelivery.payload.request.LoginRequest;
 import com.maxnguyen.fooddelivery.payload.request.SignUpRequest;
+import com.maxnguyen.fooddelivery.utils.JwtUtilsHelper;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Encoders;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.crypto.SecretKey;
 
 @RestController
 @RequestMapping("/client")
 public class LoginController {
     @Autowired
     LoginServiceImp loginServiceImp;
+
+    @Autowired
+    JwtUtilsHelper jwtUtilsHelper;
+
     @PostMapping("/login")
     public ResponseEntity<?> signin(@RequestBody LoginRequest loginRequest){
         ResponseData responseData = new ResponseData();
 
-
         if (loginServiceImp.checkLogin(loginRequest.getUsername(), loginRequest.getPassword())){
-            responseData.setData(true);
+            String token = jwtUtilsHelper.generateToken(loginRequest.getUsername());
+
+            responseData.setData(token);
         } else {
-            responseData.setData(false);
+            responseData.setData("");
+            responseData.setSuccessful(false);
         }
         return new ResponseEntity<>(responseData, HttpStatus.OK);
     }

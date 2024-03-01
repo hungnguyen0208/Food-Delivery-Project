@@ -7,6 +7,7 @@ import com.maxnguyen.fooddelivery.service.imp.LoginServiceImp;
 import com.maxnguyen.fooddelivery.payload.request.SignUpRequest;
 import com.maxnguyen.fooddelivery.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,6 +16,9 @@ import java.util.List;
 public class LoginService implements LoginServiceImp {
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Override
     public List<UserDto> getAllUser(){
@@ -36,8 +40,9 @@ public class LoginService implements LoginServiceImp {
 
     @Override
     public boolean checkLogin(String username, String password) {
-        List<Users> usersList = userRepository.findByUserNameAndPassword(username, password);
-        return usersList.size() > 0;
+        Users users = userRepository.findByUserName(username);
+
+        return passwordEncoder.matches(password, users.getPassword());
     }
 
     @Override

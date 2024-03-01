@@ -1,4 +1,4 @@
-package com.maxnguyen.fooddelivery.imp;
+package com.maxnguyen.fooddelivery.service.imp;
 
 import com.maxnguyen.fooddelivery.dto.UserDto;
 import com.maxnguyen.fooddelivery.payload.request.SignUpRequest;

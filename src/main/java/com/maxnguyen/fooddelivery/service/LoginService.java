@@ -3,7 +3,7 @@ package com.maxnguyen.fooddelivery.service;
 import com.maxnguyen.fooddelivery.dto.UserDto;
 import com.maxnguyen.fooddelivery.entity.Roles;
 import com.maxnguyen.fooddelivery.entity.Users;
-import com.maxnguyen.fooddelivery.imp.LoginServiceImp;
+import com.maxnguyen.fooddelivery.service.imp.LoginServiceImp;
 import com.maxnguyen.fooddelivery.payload.request.SignUpRequest;
 import com.maxnguyen.fooddelivery.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

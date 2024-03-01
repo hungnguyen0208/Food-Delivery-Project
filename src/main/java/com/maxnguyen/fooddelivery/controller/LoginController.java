@@ -1,6 +1,6 @@
 package com.maxnguyen.fooddelivery.controller;
 
-import com.maxnguyen.fooddelivery.imp.LoginServiceImp;
+import com.maxnguyen.fooddelivery.service.imp.LoginServiceImp;
 import com.maxnguyen.fooddelivery.payload.ResponseData;
 import com.maxnguyen.fooddelivery.payload.request.LoginRequest;
 import com.maxnguyen.fooddelivery.payload.request.SignUpRequest;
@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/client")
 public class LoginController {
     @Autowired
     LoginServiceImp loginServiceImp;
@@ -35,13 +35,4 @@ public class LoginController {
 
         return new ResponseEntity<>(responseData, HttpStatus.OK);
     }
-
-    @GetMapping("/getAllUser")
-    public ResponseEntity<?> getAllUser(){
-        ResponseData responseData = new ResponseData();
-        responseData.setData(loginServiceImp.getAllUser());
-
-        return new ResponseEntity<>(responseData, HttpStatus.OK);
-    }
-
 }

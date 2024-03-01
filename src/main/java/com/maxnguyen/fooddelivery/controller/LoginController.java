@@ -5,16 +5,10 @@ import com.maxnguyen.fooddelivery.payload.ResponseData;
 import com.maxnguyen.fooddelivery.payload.request.LoginRequest;
 import com.maxnguyen.fooddelivery.payload.request.SignUpRequest;
 import com.maxnguyen.fooddelivery.utils.JwtUtilsHelper;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.io.Encoders;
-import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.crypto.SecretKey;
 
 @RestController
 @RequestMapping("/client")

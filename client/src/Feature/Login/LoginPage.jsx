@@ -13,7 +13,7 @@ export default function LoginPage() {
 
         try {
             console.log(username, password);
-            const response = await axios.post('http://localhost:8080/user/login', { username, password });
+            const response = await axios.post('http://localhost:8080/client/login', { username, password });
 
             console.log(response.data);
         } catch (error) {

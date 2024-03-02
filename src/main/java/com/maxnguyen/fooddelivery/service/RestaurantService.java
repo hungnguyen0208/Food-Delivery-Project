@@ -1,15 +1,22 @@
 package com.maxnguyen.fooddelivery.service;
 
+import com.maxnguyen.fooddelivery.dto.RestaurantDto;
+import com.maxnguyen.fooddelivery.entity.RatingRestaurant;
 import com.maxnguyen.fooddelivery.entity.Restaurant;
 import com.maxnguyen.fooddelivery.repository.RestaurantRepository;
 import com.maxnguyen.fooddelivery.service.imp.FileServiceImp;
 import com.maxnguyen.fooddelivery.service.imp.RestaurantServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Service
 public class RestaurantService implements RestaurantServiceImp {
@@ -44,5 +51,33 @@ public class RestaurantService implements RestaurantServiceImp {
         }
 
         return isCreateSuccessful;
+    }
+
+    @Override
+    public List<RestaurantDto> getRestaurantList() {
+        List<RestaurantDto> restaurantDtos = new ArrayList<>();
+        PageRequest pageRequest = PageRequest.of(0, 6);
+        Page<Restaurant> restaurantList = restaurantRepository.findAll(pageRequest);
+
+        for (Restaurant restaurant : restaurantList){
+            RestaurantDto restaurantDto = new RestaurantDto();
+            restaurantDto.setImage(restaurant.getIamge());
+            restaurantDto.setTitle(restaurant.getTitle());
+            restaurantDto.setSubtitle(restaurant.getSubtitle());
+            restaurantDto.setSubtitle(restaurant.getSubtitle());
+            restaurantDto.setFreeShip(restaurant.isFreeShip());
+            restaurantDto.setRating(calculatorRating(restaurant.getRatingRestaurants()));
+
+            restaurantDtos.add(restaurantDto);
+        }
+        return restaurantDtos;
+    }
+
+    private double calculatorRating(Set<RatingRestaurant> ratingList){
+        double totalPoint = 0;
+        for (RatingRestaurant data : ratingList){
+            totalPoint += data.getRatingPoint();
+        }
+        return totalPoint/ratingList.size();
     }
 }

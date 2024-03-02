@@ -1,14 +1,14 @@
 import React from 'react'
+import ExploreRestaurant from './ExploreRestaurant'
 import Navbar from '../Components/Navbar'
-import Login from './Login'
 
-function LoginPage() {
+function Homepage() {
     return (
         <div>
             <Navbar />
-            <Login />
+            <ExploreRestaurant />
         </div>
     )
 }
 
-export default LoginPage
+export default Homepage

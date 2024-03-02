@@ -56,14 +56,13 @@ public class RestaurantService implements RestaurantServiceImp {
     @Override
     public List<RestaurantDto> getRestaurantList() {
         List<RestaurantDto> restaurantDtos = new ArrayList<>();
-        PageRequest pageRequest = PageRequest.of(0, 6);
+        PageRequest pageRequest = PageRequest.of(0, 4);
         Page<Restaurant> restaurantList = restaurantRepository.findAll(pageRequest);
 
         for (Restaurant restaurant : restaurantList){
             RestaurantDto restaurantDto = new RestaurantDto();
             restaurantDto.setImage(restaurant.getIamge());
             restaurantDto.setTitle(restaurant.getTitle());
-            restaurantDto.setSubtitle(restaurant.getSubtitle());
             restaurantDto.setSubtitle(restaurant.getSubtitle());
             restaurantDto.setFreeShip(restaurant.isFreeShip());
             restaurantDto.setRating(calculatorRating(restaurant.getRatingRestaurants()));

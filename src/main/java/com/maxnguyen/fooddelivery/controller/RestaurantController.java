@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:3000/")
 @RestController
 @RequestMapping("/restaurant")
 public class RestaurantController {
@@ -21,7 +21,7 @@ public class RestaurantController {
     @Autowired
     RestaurantServiceImp restaurantServiceImp;
 
-    @PostMapping()
+    @PostMapping("")
     public ResponseEntity<?> createRestaurant(
             @RequestParam MultipartFile file,
             @RequestParam String title,
@@ -37,7 +37,7 @@ public class RestaurantController {
         return new ResponseEntity<>(responseData, HttpStatus.OK);
     }
 
-    @GetMapping()
+    @GetMapping("")
     public ResponseEntity<?> getRestaurantList(){
         ResponseData responseData = new ResponseData();
 

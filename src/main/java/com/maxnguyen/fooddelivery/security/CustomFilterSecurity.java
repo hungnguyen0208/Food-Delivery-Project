@@ -37,7 +37,7 @@ public class CustomFilterSecurity {
                 .cors(AbstractHttpConfigurer::disable)
                 .sessionManagement(httpSecuritySessionManagementConfigurer -> httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(authorize -> authorize.requestMatchers("/client/**", "/restaurant/file/**").permitAll()
+                .authorizeHttpRequests(authorize -> authorize.requestMatchers("/client/**", "/restaurant/**").permitAll()
                         .anyRequest().authenticated());
         http.addFilterBefore(customJwtFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();

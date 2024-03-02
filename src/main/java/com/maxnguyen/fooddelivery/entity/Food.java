@@ -11,12 +11,14 @@ public class Food {
     private int id;
     @Column(name = "title")
     private String title;
-    @Column(name = "iamge")
+    @Column(name = "image")
     private String image;
     @Column(name = "time_ship")
     private String timeShip;
     @Column(name = "price")
     private double price;
+    @Column(name = "is_freeship")
+    private boolean isFreeShip;
 
     @ManyToOne
     @JoinColumn(name = "cate_id")
@@ -27,6 +29,14 @@ public class Food {
 
     @OneToMany(mappedBy = "food")
     private Set<OrderItem> orderItems;
+
+    public boolean isFreeShip() {
+        return isFreeShip;
+    }
+
+    public void setFreeShip(boolean freeShip) {
+        isFreeShip = freeShip;
+    }
 
     public Set<OrderItem> getOrderItems() {
         return orderItems;

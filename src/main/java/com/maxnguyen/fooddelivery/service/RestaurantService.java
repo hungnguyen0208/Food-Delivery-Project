@@ -1,8 +1,12 @@
 package com.maxnguyen.fooddelivery.service;
 
+import com.maxnguyen.fooddelivery.dto.CategoryDto;
+import com.maxnguyen.fooddelivery.dto.MenuDto;
 import com.maxnguyen.fooddelivery.dto.RestaurantDto;
+import com.maxnguyen.fooddelivery.entity.Food;
 import com.maxnguyen.fooddelivery.entity.RatingRestaurant;
 import com.maxnguyen.fooddelivery.entity.Restaurant;
+import com.maxnguyen.fooddelivery.entity.RestaurantCategory;
 import com.maxnguyen.fooddelivery.repository.RestaurantRepository;
 import com.maxnguyen.fooddelivery.service.imp.FileServiceImp;
 import com.maxnguyen.fooddelivery.service.imp.RestaurantServiceImp;
@@ -13,10 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class RestaurantService implements RestaurantServiceImp {
@@ -36,7 +37,7 @@ public class RestaurantService implements RestaurantServiceImp {
                 restaurant.setTitle(title);
                 restaurant.setSubtitle(subtitle);
                 restaurant.setDescription(description);
-                restaurant.setIamge(file.getOriginalFilename());
+                restaurant.setImage(file.getOriginalFilename());
                 restaurant.setFreeShip(isFreeShip);
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
                 Date opendate = simpleDateFormat.parse(openDate);
@@ -62,7 +63,7 @@ public class RestaurantService implements RestaurantServiceImp {
         for (Restaurant restaurant : restaurantList){
             RestaurantDto restaurantDto = new RestaurantDto();
             restaurantDto.setId(restaurant.getId());
-            restaurantDto.setImage(restaurant.getIamge());
+            restaurantDto.setImage(restaurant.getImage());
             restaurantDto.setTitle(restaurant.getTitle());
             restaurantDto.setSubtitle(restaurant.getSubtitle());
             restaurantDto.setFreeShip(restaurant.isFreeShip());
@@ -79,5 +80,45 @@ public class RestaurantService implements RestaurantServiceImp {
             totalPoint += data.getRatingPoint();
         }
         return totalPoint/ratingList.size();
+    }
+
+    @Override
+    public RestaurantDto getRestaurantDetail(int id) {
+        Optional<Restaurant> restaurant = restaurantRepository.findById(id);
+        RestaurantDto restaurantDto = new RestaurantDto();
+
+        if (restaurant.isPresent()){
+            List<CategoryDto> categoryDtoList = new ArrayList<>();
+            Restaurant data = restaurant.get();
+
+            restaurantDto.setTitle(data.getTitle());
+            restaurantDto.setSubtitle(data.getSubtitle());
+            restaurantDto.setDescription(data.getDescription());
+            restaurantDto.setImage(data.getImage());
+            restaurantDto.setRating(calculatorRating(data.getRatingRestaurants()));
+            restaurantDto.setFreeShip(data.isFreeShip());
+            restaurantDto.setOpenDate(data.getOpenDate());
+            restaurantDto.setAddress(data.getAddress());
+
+            for (RestaurantCategory restaurantCategory : data.getRestaurantCategories()){
+                List<MenuDto> menuDtoList = new ArrayList<>();
+                CategoryDto categoryDto = new CategoryDto();
+                categoryDto.setName(restaurantCategory.getCategory().getCategoryName());
+
+                for (Food food : restaurantCategory.getCategory().getFoodList()){
+                    MenuDto menuDto = new MenuDto();
+                    menuDto.setImage(food.getImage());
+                    menuDto.setFreeShip(food.isFreeShip());
+                    menuDto.setTitle(food.getTitle());
+
+                    menuDtoList.add(menuDto);
+                }
+                categoryDto.setMenus(menuDtoList);
+                categoryDtoList.add(categoryDto);
+            }
+            restaurantDto.setCategories(categoryDtoList);
+        }
+
+        return restaurantDto;
     }
 }

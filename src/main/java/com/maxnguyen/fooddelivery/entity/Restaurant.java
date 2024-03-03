@@ -17,7 +17,7 @@ public class Restaurant {
     @Column(name = "description")
     private String description;
     @Column(name = "image")
-    private String iamge;
+    private String image;
     @Column(name = "is_freeship")
     private boolean isFreeShip;
     @Column(name = "address")
@@ -98,12 +98,12 @@ public class Restaurant {
         this.description = description;
     }
 
-    public String getIamge() {
-        return iamge;
+    public String getImage() {
+        return image;
     }
 
-    public void setIamge(String iamge) {
-        this.iamge = iamge;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public boolean isFreeShip() {

@@ -62,14 +62,4 @@ public class RestaurantController {
 
         return new ResponseEntity<>(responseData, HttpStatus.OK);
     }
-
-
-
-
-
-
-
-
-
-
 }

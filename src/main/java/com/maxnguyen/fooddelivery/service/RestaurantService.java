@@ -91,6 +91,7 @@ public class RestaurantService implements RestaurantServiceImp {
             List<CategoryDto> categoryDtoList = new ArrayList<>();
             Restaurant data = restaurant.get();
 
+            restaurantDto.setId(data.getId());
             restaurantDto.setTitle(data.getTitle());
             restaurantDto.setSubtitle(data.getSubtitle());
             restaurantDto.setDescription(data.getDescription());
@@ -104,9 +105,11 @@ public class RestaurantService implements RestaurantServiceImp {
                 List<MenuDto> menuDtoList = new ArrayList<>();
                 CategoryDto categoryDto = new CategoryDto();
                 categoryDto.setName(restaurantCategory.getCategory().getCategoryName());
+                categoryDto.setId(restaurantCategory.getCategory().getId());
 
                 for (Food food : restaurantCategory.getCategory().getFoodList()){
                     MenuDto menuDto = new MenuDto();
+                    menuDto.setId(food.getId());
                     menuDto.setImage(food.getImage());
                     menuDto.setFreeShip(food.isFreeShip());
                     menuDto.setTitle(food.getTitle());

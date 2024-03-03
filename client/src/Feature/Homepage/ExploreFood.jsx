@@ -26,7 +26,6 @@ function ExploreFood() {
         fetchCategories();
     }, []);
 
-    console.log(categories);
     const menuLink = 'http://localhost:8080/menu';
 
     return (

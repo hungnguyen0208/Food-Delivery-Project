@@ -1,11 +1,20 @@
 package com.maxnguyen.fooddelivery.dto;
 
 public class RestaurantDto {
+    private int id;
     private String image;
     private String title;
     private double rating;
     private String subtitle;
     private boolean isFreeShip;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getImage() {
         return image;

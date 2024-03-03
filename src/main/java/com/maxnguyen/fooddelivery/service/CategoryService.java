@@ -27,11 +27,13 @@ public class CategoryService implements CategoryServiceImp {
 
         for (Category data : categoryList){
             CategoryDto categoryDto = new CategoryDto();
+            categoryDto.setId(data.getId());
             categoryDto.setName(data.getCategoryName());
 
             List<MenuDto> menuDtos = new ArrayList<>();
             for (Food dataFood : data.getFoodList()){
                 MenuDto menuDto = new MenuDto();
+                menuDto.setId(dataFood.getId());
                 menuDto.setTitle(dataFood.getTitle());
                 menuDto.setFreeShip(dataFood.isFreeShip());
                 menuDto.setImage(dataFood.getImage());

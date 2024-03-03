@@ -61,6 +61,7 @@ public class RestaurantService implements RestaurantServiceImp {
 
         for (Restaurant restaurant : restaurantList){
             RestaurantDto restaurantDto = new RestaurantDto();
+            restaurantDto.setId(restaurant.getId());
             restaurantDto.setImage(restaurant.getIamge());
             restaurantDto.setTitle(restaurant.getTitle());
             restaurantDto.setSubtitle(restaurant.getSubtitle());

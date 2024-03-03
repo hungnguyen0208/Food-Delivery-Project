@@ -1,9 +1,18 @@
 package com.maxnguyen.fooddelivery.dto;
 
 public class MenuDto {
+    private int id;
     private String title;
     private String image;
     private boolean isFreeShip;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;

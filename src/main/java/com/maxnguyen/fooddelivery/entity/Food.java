@@ -11,6 +11,8 @@ public class Food {
     private int id;
     @Column(name = "title")
     private String title;
+    @Column(name = "description")
+    private String desccription;
     @Column(name = "image")
     private String image;
     @Column(name = "time_ship")
@@ -29,6 +31,14 @@ public class Food {
 
     @OneToMany(mappedBy = "food")
     private Set<OrderItem> orderItems;
+
+    public String getDesccription() {
+        return desccription;
+    }
+
+    public void setDesccription(String desccription) {
+        this.desccription = desccription;
+    }
 
     public boolean isFreeShip() {
         return isFreeShip;

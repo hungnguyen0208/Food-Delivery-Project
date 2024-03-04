@@ -5,6 +5,8 @@ import com.maxnguyen.fooddelivery.payload.ResponseData;
 import com.maxnguyen.fooddelivery.payload.request.LoginRequest;
 import com.maxnguyen.fooddelivery.payload.request.SignUpRequest;
 import com.maxnguyen.fooddelivery.utils.JwtUtilsHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,9 +22,17 @@ public class LoginController {
     @Autowired
     JwtUtilsHelper jwtUtilsHelper;
 
+    Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @PostMapping("/login")
     public ResponseEntity<?> signin(@RequestBody LoginRequest loginRequest){
         ResponseData responseData = new ResponseData();
+
+        logger.trace("Check trace log");
+        logger.debug("Check debug log");
+        logger.info("Check info log");
+        logger.warn("Check warning log");
+        logger.error("Check error log");
 
         if (loginServiceImp.checkLogin(loginRequest.getUsername(), loginRequest.getPassword())){
             String token = jwtUtilsHelper.generateToken(loginRequest.getUsername());

@@ -1,12 +1,12 @@
 import React from 'react'
 import ExploreRestaurant from './ExploreRestaurant'
-import Navbar from '../Components/Navbar'
 import ExploreFood from './ExploreFood'
+import Hero from './Hero'
 
 function Homepage() {
     return (
         <div>
-            <Navbar />
+            <Hero />
             <ExploreRestaurant />
             <ExploreFood />
         </div>

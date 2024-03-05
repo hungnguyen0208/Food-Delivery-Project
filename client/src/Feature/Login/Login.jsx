@@ -1,12 +1,15 @@
 import { useState } from "react"
 import axios from "axios";
+import Navbar from "../Components/Navbar";
+import { useNavigate } from "react-router-dom";
+
 
 function Login() {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
-    const [success, setSuccess] = useState(false);
 
     const handleSignIn = async (e) => {
         e.preventDefault();
@@ -15,7 +18,8 @@ function Login() {
             const response = await axios.post('http://localhost:8080/client/login', { username, password });
             console.log(response.data.successful);
             if (response.data.successful) {
-                //window.location.href ='./index.html';
+                navigate('/', { replace: true });
+
                 localStorage.setItem("token", response.data.data);
             }
 
@@ -26,15 +30,8 @@ function Login() {
 
     return (
         <>
-            {success ? (
-                <section>
-                    <h1>You are logged in!</h1>
-                    <br />
-                    <p>
-                        <a href="#">Go to Home</a>
-                    </p>
-                </section>
-            ) : (
+            <div>
+                <Navbar />
                 <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                     <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                         <img
@@ -108,7 +105,7 @@ function Login() {
                         </p>
                     </div>
                 </div>
-            )}
+            </div>
         </>
     )
 }

@@ -37,7 +37,7 @@ public class CategoryService implements CategoryServiceImp {
 
         if(dataRedis == null){
 
-            PageRequest pageRequest = PageRequest.of(0, 3, Sort.by("id"));
+            PageRequest pageRequest = PageRequest.of(0, 4, Sort.by("id"));
             Page<Category> categoryList = categoryRepository.findAll(pageRequest);
 
             for (Category data : categoryList){

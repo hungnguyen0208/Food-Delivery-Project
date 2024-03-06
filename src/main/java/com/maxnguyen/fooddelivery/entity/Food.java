@@ -25,12 +25,22 @@ public class Food {
     @ManyToOne
     @JoinColumn(name = "cate_id")
     private Category category;
-
+    @ManyToOne
+    @JoinColumn(name = "res_id")
+    private Restaurant restaurant;
     @OneToMany(mappedBy = "food")
     private Set<RatingFood> ratingFoods;
 
     @OneToMany(mappedBy = "food")
     private Set<OrderItem> orderItems;
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
 
     public String getDesccription() {
         return desccription;

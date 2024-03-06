@@ -25,6 +25,8 @@ public class Restaurant {
     @Column(name = "open_date")
     private Date openDate;
     @OneToMany(mappedBy = "restaurant")
+    private Set<Food> foods;
+    @OneToMany(mappedBy = "restaurant")
     private Set<RatingRestaurant> ratingRestaurants;
     @OneToMany(mappedBy = "restaurant")
     private Set<Orders> orders;
@@ -33,6 +35,14 @@ public class Restaurant {
     private Set<RestaurantCategory> restaurantCategories;
     @OneToMany(mappedBy = "restaurant")
     private Set<Promotion> promotions;
+
+    public Set<Food> getFoods() {
+        return foods;
+    }
+
+    public void setFoods(Set<Food> foods) {
+        this.foods = foods;
+    }
 
     public Set<Promotion> getPromotions() {
         return promotions;

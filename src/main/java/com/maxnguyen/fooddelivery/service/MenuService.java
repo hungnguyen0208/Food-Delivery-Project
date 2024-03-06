@@ -2,6 +2,7 @@ package com.maxnguyen.fooddelivery.service;
 
 import com.maxnguyen.fooddelivery.entity.Category;
 import com.maxnguyen.fooddelivery.entity.Food;
+import com.maxnguyen.fooddelivery.entity.Restaurant;
 import com.maxnguyen.fooddelivery.repository.FoodRepository;
 import com.maxnguyen.fooddelivery.service.imp.FileServiceImp;
 import com.maxnguyen.fooddelivery.service.imp.MenuServiceImp;
@@ -18,7 +19,7 @@ public class MenuService implements MenuServiceImp {
     FoodRepository foodRepository;
 
     @Override
-    public boolean createMenu(MultipartFile file, String title, boolean isFreeShip, String timeShip, double price, int cate_Id) {
+    public boolean createMenu(MultipartFile file, String title, boolean isFreeShip, String timeShip, double price, int cate_Id, int res_Id, String description) {
         boolean isCreateSuccessful = false;
         try{
             boolean isSaveFileSuccessful = fileServiceImp.saveFile(file);
@@ -30,11 +31,16 @@ public class MenuService implements MenuServiceImp {
                 food.setTimeShip(timeShip);
                 food.setPrice(price);
                 food.setFreeShip(isFreeShip);
+                food.setDesccription(description);
 
                 Category category = new Category();
                 category.setId(cate_Id);
-
                 food.setCategory(category);
+
+                Restaurant restaurant = new Restaurant();
+                restaurant.setId(res_Id);
+                food.setRestaurant(restaurant);
+
                 foodRepository.save(food);
                 isCreateSuccessful = true;
             }

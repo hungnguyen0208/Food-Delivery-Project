@@ -27,10 +27,12 @@ public class MenuController {
             @RequestParam boolean isFreeShip,
             @RequestParam String timeShip,
             @RequestParam double price,
-            @RequestParam int cate_Id
+            @RequestParam int cate_Id,
+            @RequestParam int res_Id,
+            @RequestParam String description
     ){
         ResponseData responseData = new ResponseData();
-        boolean isSuccessful = menuServiceImp.createMenu(file, title, isFreeShip, timeShip, price, cate_Id);
+        boolean isSuccessful = menuServiceImp.createMenu(file, title, isFreeShip, timeShip, price, cate_Id, res_Id, description);
         responseData.setData(isSuccessful);
         return new ResponseEntity<>(responseData, HttpStatus.OK);
     }

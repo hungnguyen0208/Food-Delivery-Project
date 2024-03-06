@@ -50,8 +50,11 @@ public class RestaurantController {
     public ResponseEntity<?> getRestaurantFile(@PathVariable String filename){
 
         Resource resource = fileServiceImp.loadFile(filename);
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"").body(resource);
+        if (resource != null){
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"").body(resource);
+        }
+        return new ResponseEntity<>("This restaurant does not exist", HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/detail")

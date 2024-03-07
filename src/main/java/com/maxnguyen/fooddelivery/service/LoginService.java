@@ -54,7 +54,10 @@ public class LoginService implements LoginServiceImp {
         Users users = new Users();
         users.setFullname(signUpRequest.getFullname());
         users.setUserName(signUpRequest.getEmail());
-        users.setPassword(signUpRequest.getPassword());
+
+        String encodedPassword = passwordEncoder.encode(signUpRequest.getPassword());
+
+        users.setPassword(encodedPassword);
         users.setRoles(roles);
 
         try {

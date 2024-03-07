@@ -31,6 +31,3 @@ Detailed information about database schema can be found here.
 
 ## API Endpoints
 A lists of API endpoints and their usage can be found in API documentation.
-
-## Authentication
-This projects uses JSON Web Tokens (JWT) for authentication

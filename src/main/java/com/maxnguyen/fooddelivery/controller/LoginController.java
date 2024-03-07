@@ -28,12 +28,6 @@ public class LoginController {
     public ResponseEntity<?> signin(@RequestBody LoginRequest loginRequest){
         ResponseData responseData = new ResponseData();
 
-        logger.trace("Check trace log");
-        logger.debug("Check debug log");
-        logger.info("Check info log");
-        logger.warn("Check warning log");
-        logger.error("Check error log");
-
         if (loginServiceImp.checkLogin(loginRequest.getUsername(), loginRequest.getPassword())){
             String token = jwtUtilsHelper.generateToken(loginRequest.getUsername());
 

@@ -2,6 +2,7 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useNavigate } from 'react-router-dom'
+import logo from '../../images/logo.png'
 
 const navigation = [
     { name: 'EXPLORE', href: '#', current: true },
@@ -38,8 +39,8 @@ function Navbar() {
                                 <div className="flex flex-shrink-0 items-center">
                                     <img
                                         className="h-8 w-auto"
-                                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                                        alt="Your Company"
+                                        src={logo}
+                                        alt="website logo"
                                     />
                                 </div>
                                 <div className="hidden sm:ml-6 sm:block">

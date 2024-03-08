@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import NavbarAdmin from './NavbarAdmin'
+import NavbarAdmin from '../NavbarAdmin'
 import axios from 'axios';
 
 function ManageUsersPage() {
@@ -37,8 +37,9 @@ function ManageUsersPage() {
         <div>
             <NavbarAdmin />
             <div className="container mx-auto px-4 py-2">
-                <h2>Manage Users</h2>
-
+                <h2 className="text-3xl font-semibold mb-4">Manage Users</h2>
+                <a href='/admin/users/create'
+                    className="bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded inline-block">Create new user</a>
                 <div className="overflow-x-auto rounded-lg shadow-md">
                     <table className="min-w-full bg-white border border-gray-300">
                         <thead>

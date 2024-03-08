@@ -26,8 +26,18 @@ This project focuses on back-end development of an online food marketplace, show
     - JSON Web Tokens (JWT) for secure authentication
     - Input validation to prevent common security vulnerbilities
 
-## Database Scheme
-Detailed information about database schema can be found here.
+## Database Schema
 
-## API Endpoints
-A lists of API endpoints and their usage can be found in API documentation.
+The MySQL database is designed with a well-optimized schema to support efficient data storage and retrieval. It caters to the complex relationships inherent in an ecommerce platform.
+![alt text](demo/Database%20Schema.png)
+
+## Admin Side
+
+The Admin Dashboard provides a centralized interface for managing products, orders, and user accounts. Leveraging Spring Security, it ensures secure access and authorized actions.
+![alt text](demo/Admin%20side.png)
+
+## Client Side
+
+The Client Interface offers a user-friendly experience for customers to browse products, place orders, and manage their accounts. Seamless integration with the backend enables real-time updates.
+![alt text](demo/Client%20side%2001.png)
+![alt text](demo/Client%20side%2002.png)

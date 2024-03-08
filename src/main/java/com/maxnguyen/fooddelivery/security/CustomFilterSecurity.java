@@ -40,7 +40,7 @@ public class CustomFilterSecurity {
                 .authorizeHttpRequests(request -> {
                     request
                             .requestMatchers(
-                                    "/client/**", "/restaurant/**", "/restaurant/file/**","/restaurant/detail/**", "/category/**", "/menu/file/**"
+                                    "/client/**", "/restaurant/**", "/restaurant/file/**","/restaurant/detail/**", "/category/**", "/menu/file/**", "/user"
                             ).permitAll()
                             .anyRequest().authenticated();
                 });

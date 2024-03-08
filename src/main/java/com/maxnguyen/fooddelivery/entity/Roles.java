@@ -3,6 +3,7 @@ package com.maxnguyen.fooddelivery.entity;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name = "roles")
@@ -14,8 +15,8 @@ public class Roles {
 
     @Column(name = "role_name")
     private String roleName;
-    @Column(name = "create_date")
-    private Date createDate;
+    @Column(name = "description")
+    private String description;
 
     @OneToMany(mappedBy = "roles")
     private Set<Users> listUsers;
@@ -44,11 +45,11 @@ public class Roles {
         this.roleName = roleName;
     }
 
-    public Date getCreateDate() {
-        return createDate;
+    public String getDescription() {
+        return description;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

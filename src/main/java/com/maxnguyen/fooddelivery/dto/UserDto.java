@@ -8,6 +8,15 @@ public class UserDto {
     private String password;
     private String fullname;
     private Date createDate;
+    private String role;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public int getId() {
         return id;

@@ -4,6 +4,7 @@ import Homepage from './Feature/Homepage/Homepage'
 import LoginPage from './Feature/Login/LoginPage'
 import RestaurantDetailPage from './Feature/Restaurants/RestaurantDetailPage';
 import AdminPage from './Feature/AdminPage/AdminPage';
+import ManageUsersPage from './Feature/AdminPage/ManageUsersPage';
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/restaurant/detail/:id" element={<RestaurantDetailPage />}></Route>
         <Route path="/admin" element={<AdminPage />} ></Route>
+        <Route path="/admin/users" element={<ManageUsersPage />} ></Route>
       </Routes>
     </BrowserRouter>
   )
